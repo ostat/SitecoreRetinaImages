@@ -1,7 +1,7 @@
 Sitecore Retina Images
 ======================
 
-<b>The Responsive Device Resolver module allows you to create rules that change the Context Device based on a user's detected screen resolution. This is an alternative approach that allows you to use Sitecore Devices without relying on device detection and external User Agent DB services that require subscription fees.</b>
+<b>A solution for serving Retina images to appropriate devices for images added to rich-text fields in Sitecore or otherwise served by Sitecore.</b>
 
 Accompanying blog post: http://sitecorecontextitem.wordpress.com/2014/03/12/sitecore-retina-images/
 
