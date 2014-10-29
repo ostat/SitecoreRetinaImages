@@ -9,9 +9,9 @@ Accompanying blog post: http://sitecorecontextitem.wordpress.com/2014/03/12/site
 
 After installing the module package you will also need to add the following JS snippet to the head section of your main layout file(s). This snippet sets the browser cookie that stores the device’s detected pixel density.
 
-<pre>
+
 <script>document.cookie = '<%= Sitecore.Configuration.Settings.GetSetting("cookieName") %>=' + Math.max(screen.width, screen.height) + ("devicePixelRatio" in window ? "," + devicePixelRatio : ",1") + '; path=/';</script>
-</pre>
+
 
 <b>Usage</b>
 
