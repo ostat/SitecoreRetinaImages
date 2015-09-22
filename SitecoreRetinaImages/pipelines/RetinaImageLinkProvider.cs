@@ -51,11 +51,15 @@ namespace SitecoreRetinaImages.pipelines
         {
             Assert.ArgumentNotNull(item, "item");
             Assert.ArgumentNotNull(mediaUrlOptions, "mediaUrlOptions");
-            double pixelDensity = GetCookiePixelDensity();
+
             //Return the standard image if any of the following conditions are met
-            if (!IsImage(item) || Context.Database == null || Context.Site.Name == "shell" || !Context.PageMode.IsNormal
-                || pixelDensity <= 1 || !((Item)item).HasChildren)
+            if (!IsImage(item) || Context.Database == null || Context.Site.Name == "shell" || !Context.PageMode.IsNormal || !((Item)item).HasChildren)
                 return base.GetMediaUrl(item, mediaUrlOptions);
+            
+            double pixelDensity = GetCookiePixelDensity();
+            if (pixelDensity <= 1)
+                return base.GetMediaUrl(item, mediaUrlOptions);
+
             //Get the first child of the media item (It should be the retina version of the image)
             Item retinaItem = ((Item)item).Children.FirstOrDefault();
             //Return the standard image if width and height are not set on the retina media items
