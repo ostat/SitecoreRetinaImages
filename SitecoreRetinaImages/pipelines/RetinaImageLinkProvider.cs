@@ -93,6 +93,10 @@ namespace SitecoreRetinaImages.pipelines
         /// <returns></returns>
         public bool IsResolutionCookieSet()
         {
+            if (HttpContext.Current == null)
+            {
+                return false;
+            }
             return HttpContext.Current.Request.Cookies[_cookieName] != null;
         }
 
@@ -105,7 +109,7 @@ namespace SitecoreRetinaImages.pipelines
             // Double check that the cookie identifying screen resolution is set
             if (!IsResolutionCookieSet()) return 1;
             // Split the cookie into resolution and pixel density ratio
-            HttpCookie httpCookie = HttpContext.Current.Request.Cookies[_cookieName];
+            HttpCookie httpCookie = (HttpContext.Current == null) ? null : HttpContext.Current.Request.Cookies[_cookieName];
             if (httpCookie == null) return 1;
             string[] cookieResolution = httpCookie.Value.Split(',');
             // If we were able to get the cookie pixel density ratio
